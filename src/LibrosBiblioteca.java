@@ -12,14 +12,16 @@ public class LibrosBiblioteca
 
         do
         {
-            opcion = JOptionPane.showInputDialog(
+            String input = JOptionPane.showInputDialog(
                     "BIBLIOTECA\n" +
                             "1. Agregar libro\n" +
                             "2. Mostrar libros\n" +
                             "3. Buscar libro\n" +
                             "4. Total libros\n" +
                             "5. Volver"
-                    ).charAt(0);
+                    );
+
+            opcion = Utilidades.verificacionNull(input, '5');
 
             switch (opcion) {
                 case '1': agregarLibro(); break;
@@ -27,11 +29,9 @@ public class LibrosBiblioteca
                 case '3': buscarLibro(); break;
                 case '4': totalLibros(); break;
                 case '5': JOptionPane.showMessageDialog(null,
-                        "Regresando al menu principal");
-                        break;
+                        "Regresando al menu principal"); break;
                 default: JOptionPane.showMessageDialog(null,
-                        "Opción No valida");
-                        break;
+                        "Opción No valida"); break;
             }
 
         } while (opcion != '5');

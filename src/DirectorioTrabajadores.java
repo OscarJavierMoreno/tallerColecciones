@@ -12,14 +12,15 @@ public class DirectorioTrabajadores
 
         do
         {
-            opcion = JOptionPane.showInputDialog(
+            String input = JOptionPane.showInputDialog(
                     "DIRECTORIO DE TRABAJADORES\n" +
                             "1. Agregar trabajador\n" +
                             "2. Mostrar trabajadores\n" +
                             "3. Actualizar salario\n" +
                             "4. Salario promedio\n" +
-                            "5. Volver"
-            ).charAt(0);
+                            "5. Volver");
+
+            opcion = Utilidades.verificacionNull(input, '5');
 
             switch (opcion) {
                 case '1': agregarTrabajador(); break;
@@ -27,10 +28,9 @@ public class DirectorioTrabajadores
                 case '3': actualizarSalario(); break;
                 case '4': salarioPromedio(); break;
                 case '5': JOptionPane.showMessageDialog(null,
-                        "Regresando al menu principal");
+                        "Regresando al menu principal"); break;
                 default: JOptionPane.showMessageDialog(null,
-                        "Opción No valida");
-                    break;
+                        "Opción No valida"); break;
             }
 
         } while (opcion != '5');
@@ -40,6 +40,9 @@ public class DirectorioTrabajadores
     {
         String nombre = JOptionPane.showInputDialog("Nombre:");
         String salarioStr = JOptionPane.showInputDialog("Salario:");
+
+        if ((nombre == null || nombre.isEmpty())
+            || (salarioStr == null || salarioStr.isEmpty())) return;
 
         try
         {

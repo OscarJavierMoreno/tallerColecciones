@@ -8,12 +8,14 @@ public class Main
 
         do
         {
-            numeroOpcion = JOptionPane.showInputDialog(
+            String input = JOptionPane.showInputDialog(
                 "Seleccione:\n" +
                         "1. Lista de tareas\n" +
                         "2. Biblioteca\n" +
                         "3. Directorio de trabajadores\n" +
-                        "4. Salir").charAt(0);
+                        "4. Salir");
+
+            numeroOpcion = Utilidades.verificacionNull(input, '4');
 
             switch (numeroOpcion)
             {
@@ -21,10 +23,9 @@ public class Main
                 case '2': LibrosBiblioteca.main(null); break;
                 case '3': DirectorioTrabajadores.main(null); break;
                 case '4': JOptionPane.showMessageDialog(null,
-                        "Gracias por usar el programa");
+                        "Gracias por usar el programa"); break;
                 default: JOptionPane.showMessageDialog(null,
-                        "Opción No valida");
-                    break;
+                        "Opción No valida"); break;
             }
 
         } while (numeroOpcion != '4');

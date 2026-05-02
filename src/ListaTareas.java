@@ -12,12 +12,14 @@ public class ListaTareas
 
         do
         {
-            numeroOpcion = JOptionPane.showInputDialog ("LISTA DE TAREAS\n" +
+            String input = JOptionPane.showInputDialog ("LISTA DE TAREAS\n" +
                     "1. Agregar nueva tarea\n" +
                     "2. Mostrar todas las tareas\n" +
                     "3. Marcar una tarea como completada\n" +
                     "4. Mostrar el número total de tareas pendientes\n" +
-                    "5. Volver").charAt(0);
+                    "5. Volver");
+
+            numeroOpcion = Utilidades.verificacionNull(input, '5');
 
             switch (numeroOpcion)
             {
@@ -27,10 +29,9 @@ public class ListaTareas
                 case '3': tareasCompletadas(); break;
                 case '4': tareasPendientes(); break;
                 case '5': JOptionPane.showMessageDialog(null,
-                        "Regresando al menu principal");
+                        "Regresando al menu principal"); break;
                 default: JOptionPane.showMessageDialog(null,
-                        "Opción No valida");
-                    break;
+                        "Opción No valida"); break;
             }
 
         } while (numeroOpcion != '5');
@@ -40,6 +41,8 @@ public class ListaTareas
     {
         String tarea = JOptionPane.showInputDialog("Digite la tarea: ");
         listaDeTareasPorHacer.add(tarea);
+
+        if (tarea == null || tarea.isEmpty()) return;
 
         JOptionPane.showMessageDialog(null,
                 "Tarea agregada a la lista");
